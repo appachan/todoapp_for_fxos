@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>Note App</title>
+	<link type="text/css" rel="stylesheet" href="css/reset.css">
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+	<script type="text/javascript" src="js/lib/jquery.js"></script>
+	<script type="text/javascript" src="js/lib/underscore.js"></script>
+	<script type="text/javascript" src="js/lib/backbone.js"></script>
+	<script type="text/javascript" src="js/lib/backbone.localStrage.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/models.js"></script>
+	<script type="text/javascript" src="js/container.js"></script>
+	<script type="text/javascript" src="js/note_list_item.js"></script>
+	<script type="text/javascript" src="js/note_list.js"></script>
+	<script type="text/javascript" src="js/note_detail.js"></script>
+	<script type="text/javascript" src="js/router.js"></script>
+	<script type="text/javascript" src="js/note_control.js"></script>
+	<script type="text/javascript" src="js/note_form.js"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="navbar navbar-default navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <span class="navbar-brand">
+                        <a href="./index.html#notes">
+                            Note App
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main" class="container">
+        <div id="header-container"></div>
+        <div id="main-container"></div>
+    </div>
+    <script type="text/template" id="noteListView-template">
+        <thead>
+            <th class="col-md-2" colspan="2">Title</th>
+        </thead>
+        <tbody class="js-noteListItemView-container"></tbody>
+    </script>
+    <script type="text/template" id="noteListItemView-template">
+        <td>
+            <a href="#notes/<%= id %>"><!-- リスト作ったらもらえる -->
+                <%= title %>
+            </a>
+        </td>
+        <td>
+            <div class="text-right">
+                <a href="#notes/<%= id %>/edit" class="btn btn-default btn-sm js-edit">
+                    <span class="glyphicon glyphicon-edit"></span>
+                Edit
+                </a>
+                <a href="#" class="btn btn-default btn-sm js-delete">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    Delete
+                </a>
+            </div>
+        </td>
+    </script>
+    <script type="text/template" id="noteDetailView-template">
+        <h2><%= title %></h2>
+        <p><%= body %></p>
+    </script>
+    <script type="text/template" id="noteControlView-template">
+        <div class="row">
+            <div class="col-sm-6">
+                <form class="form-inline js-search-form">
+                    <div class="input-group">
+                        <input type="text" class="form-control js-search-query" name="q">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-6 text-right">
+                <a href="#new" class="btn btn-primary btn-small js-new">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    New Note
+                </a>
+            </div>
+        </div>
+    </script>
+    <script type="text/template" id="noteForm-template">
+        <form>
+            <div class="form-group">
+                <label for="noteTitle">Title</label>
+                <input type="text" class="form-control js-noteTitle" id="noteTitle" value="<%= title %>">
+            </div>
+            <div class="form-group">
+                <label for="noteBody">Body<label>
+                <textarea class="form-control js-noteBody" rows="4"><%= body %></textarea>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+           </form>
+    </script>
+</body>
+</html>
